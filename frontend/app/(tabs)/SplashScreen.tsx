@@ -6,10 +6,11 @@ import {
   Dimensions,
   ActivityIndicator,
   StatusBar,
+  Pressable,
 } from "react-native";
 import AbstractConstellation from "@/src/components/uiComponents/splashScreenAnimation";
-import { Colors } from "@/constants/theme";
 import { colors } from "@/src/constants/colors";
+import { router } from "expo-router";
 
 const { width, height } = Dimensions.get("window");
 
@@ -57,7 +58,10 @@ export default function SplashScreen() {
   }, [fadeAnim, titleY, titleOpacity, subtitleOpacity, creditOpacity]);
 
   return (
-    <View style={styles.container}>
+    <Pressable
+      style={styles.container}
+      onPress={() => router.push("/(tabs)/auth/Signup")}
+    >
       <StatusBar barStyle="light-content" backgroundColor="#0A0C14" />
 
       <Animated.View style={[styles.content, { opacity: fadeAnim }]}>
@@ -90,7 +94,7 @@ export default function SplashScreen() {
           </Animated.Text>
         </View>
       </Animated.View>
-    </View>
+    </Pressable>
   );
 }
 
